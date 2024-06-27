@@ -1,6 +1,7 @@
 package org.example.miniotest;
 
 import io.minio.*;
+import io.minio.http.Method;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -64,4 +65,16 @@ public class MinioService {
             System.err.println("Error occurred: " + e.getMessage());
         }
     }
+
+    public String getPresignedObjectUrl(String objectName) throws Exception {
+        GetPresignedObjectUrlArgs args = GetPresignedObjectUrlArgs.builder()
+                .method(Method.GET)
+                .bucket(bucketName)
+                .object(objectName)
+                .build();
+        return minioClient.getPresignedObjectUrl(args);
+    }
+
+
+
 }
