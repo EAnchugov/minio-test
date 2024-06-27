@@ -27,7 +27,8 @@ public class MinioService {
         );
     }
 
-    public void addFile() {
+    //TODO Сделать превязку Car, ФОтографии и пути до этой фотографии.
+        public void addFile() {
         try {
             // Создайте MinIO клиент
             MinioClient minioClient = MinioClient.builder()
@@ -37,6 +38,7 @@ public class MinioService {
 
             // Задайте параметры файла
             //       String bucketName = bucketName;
+            //TODO сделать передачу путей и имени файла
             String objectName = "minio.png";  // Имя объекта в MinIO
             String filePath = "D:\\minio.png";  // Путь к вашему файлу
 
@@ -66,6 +68,7 @@ public class MinioService {
         }
     }
 
+    //TODO Связать этот метод см CAR
     public String getPresignedObjectUrl(String objectName) throws Exception {
         GetPresignedObjectUrlArgs args = GetPresignedObjectUrlArgs.builder()
                 .method(Method.GET)
@@ -74,7 +77,4 @@ public class MinioService {
                 .build();
         return minioClient.getPresignedObjectUrl(args);
     }
-
-
-
 }
